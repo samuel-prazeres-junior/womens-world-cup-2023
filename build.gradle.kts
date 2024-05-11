@@ -6,6 +6,7 @@ plugins {
 	kotlin("jvm") version "1.8.22"
 	kotlin("plugin.spring") version "1.8.22"
 	kotlin("plugin.jpa") version "1.8.22"
+	id("org.sonarqube") version "5.0.0.4638"
 }
 
 group = "io.github"
@@ -55,4 +56,12 @@ tasks.withType<Test> {
 
 tasks.bootBuildImage {
 	builder.set("paketobuildpacks/builder-jammy-base:latest")
+}
+
+sonar {
+	properties {
+		property("sonar.projectKey", "womens-world-cup-2023")
+		property("sonar.host.url", "http://localhost:9000")
+		property ("sonar.login", "sqp_c9fa8f1fdad6748abd3c64fcf99c5c9f3049bf89")
+	}
 }
